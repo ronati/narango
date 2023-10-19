@@ -11,7 +11,7 @@
 
 **All contributions are welcome!**
 
-This project is setup with automatic semver versioning based on your commit semantic. It uses [`commitizen`](https://commitizen.github.io/cz-cli/) to enforce the format and help contributors format their commit message. We follow Angular's [conventional commit format](https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#-git-commit-guidelines). Once you want to commit your work, you need to:
+This project is setup with automatic semver versioning based on your commit semantic. It uses [`commitizen`](https://commitizen.github.io/cz-cli/) to enforce the format and help contributors format their commit message. We follow the [conventional commit format](https://www.conventionalcommits.org/en/v1.0.0/). Once you want to commit your work, you need to:
 
 1. `git add` the changes you want to commit.
 2. Run `npx cz` to start the commitizen CLI.
