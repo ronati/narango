@@ -13,13 +13,13 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "target": "es2022",
-    "verbatimModuleSyntax": true,
+    "verbatimModuleSyntax": false,
     "allowJs": true,
     "resolveJsonModule": true,
     "moduleDetection": "force",
 
-    "moduleResolution": "NodeNext",
-    "module": "NodeNext",
+    "moduleResolution": "node",
+    "module": "commonjs",
     "outDir": "./dist",
     "lib": ["es2022"],
 

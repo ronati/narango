@@ -2,8 +2,8 @@
 import { describe, expect, it, jest } from "@jest/globals";
 import { Test } from "@nestjs/testing";
 
-import { NarangoModule } from "./narango.module.js";
-import { NarangoService } from "./narango.service.js";
+import { NarangoModule } from "./narango.module";
+import { NarangoService } from "./narango.service";
 
 const closeSpy = jest.fn();
 jest.mock("arangojs", () => ({

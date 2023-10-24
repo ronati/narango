@@ -2,8 +2,8 @@ import { Inject, Injectable } from "@nestjs/common";
 import type { OnApplicationShutdown } from "@nestjs/common";
 import { Database } from "arangojs";
 
-import { MODULE_OPTIONS } from "./narango.config.js";
-import type { NarangoModuleOptions } from "./narango.config.js";
+import { MODULE_OPTIONS } from "./narango.config";
+import type { NarangoModuleOptions } from "./narango.config";
 
 @Injectable()
 export class NarangoService implements OnApplicationShutdown {
