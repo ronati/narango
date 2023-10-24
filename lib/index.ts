@@ -1,1 +1,3 @@
-export const test = "i am a test";
+export * from "./narango.config";
+export * from "./narango.service";
+export * from "./narango.module";
