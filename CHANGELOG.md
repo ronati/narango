@@ -1,3 +1,10 @@
+# [1.0.0-beta.2](https://github.com/ronati/narango/compare/v1.0.0-beta.1...v1.0.0-beta.2) (2023-10-25)
+
+
+### Features
+
+* allow narango.module to be registered as global ([5bc0608](https://github.com/ronati/narango/commit/5bc06087b8a9417b96436c48b274b6a1adc9f52a))
+
 # 1.0.0-beta.1 (2023-10-25)
 
 
