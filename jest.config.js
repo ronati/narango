@@ -2,12 +2,11 @@
 module.exports = {
   testEnvironment: "node",
   transform: {
-    "\\.[jt]sx?$": ["ts-jest", { useESM: true }],
+    "\\.[jt]sx?$": "ts-jest",
   },
   moduleNameMapper: {
     "(.+)\\.js": "$1",
   },
-  extensionsToTreatAsEsm: [".ts"],
   collectCoverage: true,
   coverageProvider: "v8",
 };
