@@ -1,13 +1,15 @@
 {
   "name": "@ronatilabs/narango",
-  "version": "0.0.0-development",
+  "version": "1.0.0-beta.1",
   "description": "A NestJS wrapper service for ArangoDB NodeJS driver",
   "exports": "./dist/index.js",
   "typings": "./dist/index.d.ts",
   "engines": {
     "node": "^18.0.0"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
     "lint": "eslint 'lib/**/*.ts'",
