@@ -10,6 +10,7 @@ export class NarangoModule {
   static register(options: NarangoModuleOptions): DynamicModule {
     return {
       module: NarangoModule,
+      global: options.global,
       providers: [
         { provide: MODULE_OPTIONS, useValue: options },
         NarangoService,

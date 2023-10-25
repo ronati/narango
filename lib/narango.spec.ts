@@ -4,6 +4,7 @@ import { Test } from "@nestjs/testing";
 
 import { NarangoModule } from "./narango.module";
 import { NarangoService } from "./narango.service";
+import { Injectable, Module } from "@nestjs/common";
 
 const closeSpy = jest.fn();
 jest.mock("arangojs", () => ({
@@ -21,16 +22,16 @@ jest.mock("arangojs", () => ({
 }));
 
 describe("Narango module", () => {
-  it("can be imported in another module with database options", async () => {
-    const options = {
-      url: "http://localhost:8529",
-      auth: {
-        username: "root",
-        password: "password",
-      },
-      databaseName: "dbName",
-    };
+  const options = {
+    url: "http://localhost:8529",
+    auth: {
+      username: "root",
+      password: "password",
+    },
+    databaseName: "dbName",
+  };
 
+  it("can be imported in another module with database options", async () => {
     const module = await Test.createTestingModule({
       imports: [
         NarangoModule.register({
@@ -48,15 +49,6 @@ describe("Narango module", () => {
   });
 
   it("close arango connection when application shutdown", async () => {
-    const options = {
-      url: "http://localhost:8529",
-      auth: {
-        username: "root",
-        password: "password",
-      },
-      databaseName: "dbName",
-    };
-
     const module = await Test.createTestingModule({
       imports: [
         NarangoModule.register({
@@ -68,6 +60,31 @@ describe("Narango module", () => {
     await module.close();
 
     expect(closeSpy).toHaveBeenCalledTimes(1);
+  });
+
+  it("can be registered globally", async () => {
+    @Injectable()
+    class TestService {
+      constructor(private narango: NarangoService) {}
+    }
+
+    @Module({ providers: [TestService] })
+    class ChildModule {}
+
+    // NestJS would throw if the NarangoService is not available in the child module
+    const rootModule = await Test.createTestingModule({
+      imports: [
+        NarangoModule.register({
+          global: true,
+          database: options,
+        }),
+        ChildModule,
+      ],
+    }).compile();
+
+    const serviceFromRoot = rootModule.get<NarangoService>(NarangoService);
+    expect(serviceFromRoot).toBeDefined();
+    expect((serviceFromRoot.db as any).options).toEqual(options);
   });
 });
 
