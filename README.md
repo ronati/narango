@@ -138,3 +138,7 @@ This project is setup with automatic semver versioning based on your commit sema
 3. Follow along the wizard to create your commit.
 4. Push your commit on the branch.
 5. Create your PR.
+
+## Notes for project's maintainers
+
+When you merge a PR from `beta` into `main` and it successfully published a new version on the `latest` channel, **don't forget to create a PR from `main` to `beta`**. **This is mandatory** for `semantic-release` to take it into account for next `beta` version.
