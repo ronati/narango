@@ -72,6 +72,36 @@ For sake of simplicity the database credentials are passed directly to the regis
 
 ```
 
+### Async registration
+
+If you need to use providers to provide the options to Narango module, you can use `NarangoModule.registerAsync`:
+
+```ts
+import { Module } from "@nestjs/common";
+import { NarangoModule } from "@ronatilabs/narango";
+import { ConfigModule, ConfigService } from "@nestjs/config";
+
+@Module({
+  imports: [
+    ConfigModule.forRoot(),
+    NarangoModule.registerAsync({
+      useFactory: (config: ConfigService) => ({
+        database: {
+          url: config.get<string>("url"),
+          databaseName: config.get<string>("databaseName"),
+          auth: {
+            username: config.get<string>("username"),
+            password: config.get<string>("password"),
+          },
+        },
+      }),
+      inject: [ConfigService],
+    }),
+  ],
+})
+export class MyAppModule {}
+```
+
 ## Inject NarangoService
 
 Now you can access the `NarangoService` everywhere you need it in your application:
@@ -108,3 +138,7 @@ This project is setup with automatic semver versioning based on your commit sema
 3. Follow along the wizard to create your commit.
 4. Push your commit on the branch.
 5. Create your PR.
+
+## Notes for project's maintainers
+
+When you merge a PR from `beta` into `main` and it successfully published a new version on the `latest` channel, **don't forget to create a PR from `main` to `beta`**. **This is mandatory** for `semantic-release` to take it into account for next `beta` version.

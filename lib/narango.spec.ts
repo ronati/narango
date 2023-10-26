@@ -4,7 +4,7 @@ import { Test } from "@nestjs/testing";
 
 import { NarangoModule } from "./narango.module";
 import { NarangoService } from "./narango.service";
-import { Injectable, Module } from "@nestjs/common";
+import { Global, Injectable, Module } from "@nestjs/common";
 
 const closeSpy = jest.fn();
 jest.mock("arangojs", () => ({
@@ -85,6 +85,42 @@ describe("Narango module", () => {
     const serviceFromRoot = rootModule.get<NarangoService>(NarangoService);
     expect(serviceFromRoot).toBeDefined();
     expect((serviceFromRoot.db as any).options).toEqual(options);
+  });
+
+  it("can be registered async", async () => {
+    @Injectable()
+    class TestService {
+      public options = { url: "http://overridden.url" };
+      constructor() {}
+    }
+
+    @Global()
+    @Module({ providers: [TestService], exports: [TestService] })
+    class ChildModule {}
+
+    const rootModule = await Test.createTestingModule({
+      imports: [
+        ChildModule,
+        NarangoModule.registerAsync({
+          useFactory: (testService: TestService) => {
+            return {
+              database: {
+                ...options,
+                url: testService.options.url,
+              },
+            };
+          },
+          inject: [TestService],
+        }),
+      ],
+    }).compile();
+
+    const serviceFromRoot = rootModule.get<NarangoService>(NarangoService);
+    expect(serviceFromRoot).toBeDefined();
+    expect((serviceFromRoot.db as any).options).toEqual({
+      ...options,
+      url: "http://overridden.url",
+    });
   });
 });
 
