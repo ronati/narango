@@ -85,6 +85,7 @@ import { ConfigModule, ConfigService } from "@nestjs/config";
   imports: [
     ConfigModule.forRoot(),
     NarangoModule.registerAsync({
+      imports: [ConfigModule.forRoot()],
       useFactory: (config: ConfigService) => ({
         database: {
           url: config.get<string>("url"),
