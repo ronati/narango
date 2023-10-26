@@ -72,6 +72,36 @@ For sake of simplicity the database credentials are passed directly to the regis
 
 ```
 
+### Async registration
+
+If you need to use providers to provide the options to Narango module, you can use `NarangoModule.registerAsync`:
+
+```ts
+import { Module } from "@nestjs/common";
+import { NarangoModule } from "@ronatilabs/narango";
+import { ConfigModule, ConfigService } from "@nestjs/config";
+
+@Module({
+  imports: [
+    ConfigModule.forRoot(),
+    NarangoModule.registerAsync({
+      useFactory: (config: ConfigService) => ({
+        database: {
+          url: config.get<string>("url"),
+          databaseName: config.get<string>("databaseName"),
+          auth: {
+            username: config.get<string>("username"),
+            password: config.get<string>("password"),
+          },
+        },
+      }),
+      inject: [ConfigService],
+    }),
+  ],
+})
+export class MyAppModule {}
+```
+
 ## Inject NarangoService
 
 Now you can access the `NarangoService` everywhere you need it in your application:
