@@ -53,6 +53,25 @@ export class MyAppModule {}
 
 For sake of simplicity the database credentials are passed directly to the register function in the example but in a production environment you'd want to use [`@nestjs/config`](https://docs.nestjs.com/techniques/configuration) instead.
 
+`NarangoModule` can be registered as a global module through the `global` option:
+
+```ts
+  imports: [
+    NarangoModule.register({
+      global: true,
+      database: {
+        url: "http://localhost:8529",
+        databaseName: "MyDatabase",
+        auth: {
+          username: "userDB",
+          password: "secretPassword",
+        },
+      },
+    }),
+  ],
+
+```
+
 ## Inject NarangoService
 
 Now you can access the `NarangoService` everywhere you need it in your application:
