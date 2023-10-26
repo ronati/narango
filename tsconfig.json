@@ -1,5 +1,4 @@
 {
-  "extends": "@tsconfig/node18/tsconfig.json",
   "compilerOptions": {
     "declaration": true,
     "noImplicitAny": false,
@@ -7,10 +6,25 @@
     "noLib": false,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "sourceMap": false,
+
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "target": "es2022",
+    "verbatimModuleSyntax": false,
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "moduleDetection": "force",
+
+    "moduleResolution": "node",
+    "module": "commonjs",
     "outDir": "./dist",
-    "rootDir": "./lib",
-    "skipLibCheck": true
+    "lib": ["es2022"],
+
+    "sourceMap": false,
+    "rootDir": "./lib"
   },
   "include": ["lib/**/*", "test/**/*", "e2e/**/*"],
   "exclude": ["node_modules"]

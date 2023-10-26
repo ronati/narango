@@ -7,6 +7,71 @@
 
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 
+# Installation
+
+```
+npm i @ronatilabs/narango
+```
+
+This package has multiple peer dependencies and expects your project to have them installed:
+
+1. `@nestjs/common`
+2. `@nestjs/core`
+3. `arangojs`
+
+Check the `package.json` to know the version range.
+
+# Usage
+
+## Import NarangoModule
+
+This package exports a NestJS module for you to import in your application:
+
+```typescript
+import { Module } from "@nestjs/common";
+import { NarangoModule } from "@ronatilabs/narango";
+
+import { MyService } from "./my-service.service";
+
+@Module({
+  imports: [
+    NarangoModule.register({
+      database: {
+        url: "http://localhost:8529",
+        databaseName: "MyDatabase",
+        auth: {
+          username: "userDB",
+          password: "secretPassword",
+        },
+      },
+    }),
+  ],
+  providers: [MyService],
+})
+export class MyAppModule {}
+```
+
+For sake of simplicity the database credentials are passed directly to the register function in the example but in a production environment you'd want to use [`@nestjs/config`](https://docs.nestjs.com/techniques/configuration) instead.
+
+## Inject NarangoService
+
+Now you can access the `NarangoService` everywhere you need it in your application:
+
+```typescript
+import { Injectable } from "@nestjs/common";
+import { NarangoService } from "@ronatilabs/narango";
+
+@Injectable()
+export class MyService {
+  constructor(private narango: NarangoService) {}
+
+  async myMethod() {
+    const collections = await this.narango.db._collections();
+    // do whatever you want
+  }
+}
+```
+
 # Contribute
 
 **All contributions are welcome!**

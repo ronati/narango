@@ -25,12 +25,18 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: "lts/*"
+          node-version: "18.x"
           cache: "npm"
+      - name: Remove husky scripts installation
+        run: npm pkg set scripts.prepareBackup="$(npm pkg get scripts.prepare | tr -d \")" && npm pkg delete scripts.prepare
       - name: Install dependencies
-        run: npm clean-install
+        run: npm ci
       - name: Verify the integrity of provenance attestations and registry signatures for installed dependencies
         run: npm audit signatures
+      - name: Build
+        run: npm run build
+      - name: Add scripts.prepare back
+        run: npm pkg set scripts.prepare="$(npm pkg get scripts.prepareBackup | tr -d \")" && npm pkg delete scripts.prepareBackup
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
