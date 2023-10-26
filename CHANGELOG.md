@@ -1,3 +1,10 @@
+# [1.1.0-beta.1](https://github.com/ronati/narango/compare/v1.0.0...v1.1.0-beta.1) (2023-10-26)
+
+
+### Features
+
+* **module:** add registerAsync function to Narango module ([5bd1f51](https://github.com/ronati/narango/commit/5bd1f513034bfd6feee322ab73dd1bdc4ba35c3a))
+
 # 1.0.0 (2023-10-26)
 
 
