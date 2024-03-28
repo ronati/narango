@@ -27,6 +27,8 @@ jobs:
         with:
           node-version: "18.x"
           cache: "npm"
+      - name: Upgrade NPM
+        run: npm i --global npm@latest
       - name: Remove husky scripts installation
         run: npm pkg set scripts.prepareBackup="$(npm pkg get scripts.prepare | tr -d \")" && npm pkg delete scripts.prepare
       - name: Install dependencies
