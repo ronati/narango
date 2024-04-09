@@ -15,7 +15,7 @@
     "lint": "eslint 'lib/**/*.ts'",
     "test": "jest",
     "test:dev": "jest --watch",
-    "prepare": "husky install"
+    "prepare": "husky"
   },
   "repository": {
     "type": "git",
