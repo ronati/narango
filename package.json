@@ -36,8 +36,8 @@
     "arangojs": "^8.0.0"
   },
   "devDependencies": {
-    "@commitlint/cli": "^17.8.0",
-    "@commitlint/config-conventional": "^18.4.3",
+    "@commitlint/cli": "^19.3.0",
+    "@commitlint/config-conventional": "^19.2.2",
     "@commitlint/cz-commitlint": "^19.2.0",
     "@eslint/js": "^8.57.0",
     "@jest/globals": "^29.7.0",
