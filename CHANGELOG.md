@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/ronati/narango/compare/v1.2.0...v1.3.0) (2025-12-11)
+
+
+### Features
+
+* **ci:** trigger build ([6e82688](https://github.com/ronati/narango/commit/6e826888fb1a1647e70ac64c6776fe4542359c10))
+
 # [1.2.0](https://github.com/ronati/narango/compare/v1.1.0...v1.2.0) (2025-12-11)
 
 
