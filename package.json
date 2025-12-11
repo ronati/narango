@@ -33,7 +33,7 @@
   "peerDependencies": {
     "@nestjs/common": "^10.0.0",
     "@nestjs/core": "^10.0.0",
-    "arangojs": "^8.0.0"
+    "arangojs": "^10.0.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.3.0",
@@ -47,7 +47,7 @@
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
     "@types/node": "^20.8.7",
-    "arangojs": "^8.5.0",
+    "arangojs": "^10.1.2",
     "commitizen": "^4.3.0",
     "commitlint": "^18.4.3",
     "eslint": "^8.51.0",

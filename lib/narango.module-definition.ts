@@ -1,4 +1,4 @@
-import type { Config as ArangoDBConfig } from "arangojs/connection";
+import type { ConfigOptions as ArangoDBConfig } from "arangojs/configuration";
 import { ConfigurableModuleBuilder } from "@nestjs/common";
 
 export interface NarangoModuleOptions {
