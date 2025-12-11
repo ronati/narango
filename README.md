@@ -3,7 +3,6 @@
   <strong>A NestJS wrapper service for ArangoDB NodeJS driver</strong>
 </div>
 
-
 <hr>
 
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
