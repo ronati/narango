@@ -1,6 +1,6 @@
 {
   "name": "@ronatilabs/narango",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "A NestJS wrapper service for ArangoDB NodeJS driver",
   "exports": "./dist/index.js",
   "typings": "./dist/index.d.ts",
